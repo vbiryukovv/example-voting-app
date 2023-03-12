@@ -1,0 +1,4 @@
+app01-staging ansible_host=appserver
+
+[appsrvgrp]
+app01-staging
