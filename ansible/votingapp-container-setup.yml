@@ -6,7 +6,7 @@
   tasks:
     - name: Include vars   // Подтягиваем переменные
       include_vars:
-        dir: vars          // Создайте папку и файлы в ней по необходимости
+        dir: vars
 
     - name: Create remote temp dir  // Создать папку для временных файлов на целевой машине
       file:
@@ -26,20 +26,20 @@
       tags:
         - docker-cleanup
 
-    - name: Remove all unused and dangling docker images // Удаляем существующие образы
+    - name: Remove all unused and dangling docker images
       shell:
         cmd: docker system prune --all --force
       tags:
         - docker-cleanup
 
-    - name: Setup with docker-compose // Поднимаем контейнеры
+    - name: Setup with docker-compose
       shell:
-        cmd: docker compose up -d
+        cmd: docker-compose up -d
         chdir: /tmp/votingapp
-      register: contdeploy            // Журнал задания сохраняем в переменную
+      register: contdeploy
       tags:
         - container-setup
 
-    - name: Display result            // Выводим журнал в консоль
+    - name: Display result
       debug:
-        msg: "Log from docker-compose: \n {{contdeploy}}\n"
+        msg: "Log from docker-compose: \n {{ contdeploy.stdout }}\n"
