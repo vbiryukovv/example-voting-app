@@ -1,25 +1,25 @@
 ---
 - name: Deploy containers
-  hosts: appsrvgrp         // Группа, которую нужно будет прописать в Inventory
+  hosts: appsrvgrp       
   become: yes
 
   tasks:
-    - name: Include vars   // Подтягиваем переменные
+    - name: Include vars
       include_vars:
         dir: vars
 
-    - name: Create remote temp dir  // Создать папку для временных файлов на целевой машине
+    - name: Make dir
       file:
         path: /tmp/votingapp
         state: directory
 
-    - name: Copy Docker Compose files  // Приземлить шаблон и скопировать его на целевую машину
+    - name: Copy DC file
       template:
         src: templates/docker-compose.j2
         dest: /tmp/votingapp/docker-compose.yml
         force: yes
 
-    - name: Stop all docker containers  // Останавливаем все докер-контейнеры
+    - name: Stop all docker containers
       shell:
         cmd: docker stop $(docker ps -q)
       ignore_errors: true
