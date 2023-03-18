@@ -1,4 +1,4 @@
-app01-staging ansible_host=appserver ansible_user=vagrant ansible_password=vagrant
+appsrv01 ansible_host=appserver ansible_user=vagrant
 
 [appsrvgrp]
-app01-staging
+appsrv01
