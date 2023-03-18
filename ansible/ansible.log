@@ -90,3 +90,14 @@ The offending line appears to be:
 }
 2023-03-16 20:41:49,509 p=28151 u=vagrant n=ansible | PLAY RECAP ****************************************************************************************************************************************
 2023-03-16 20:41:49,510 p=28151 u=vagrant n=ansible | app01-staging              : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2023-03-17 00:05:57,220 p=46150 u=vagrant n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: appsrv01
+
+2023-03-17 00:05:57,221 p=46150 u=vagrant n=ansible | [WARNING]: No hosts matched, nothing to do
+
+2023-03-17 00:06:13,436 p=46163 u=vagrant n=ansible | app01-staging | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
