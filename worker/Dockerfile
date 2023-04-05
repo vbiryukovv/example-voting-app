@@ -6,10 +6,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
 
 WORKDIR /source
-COPY *.csproj .
+COPY ./worker/*.csproj .
 RUN dotnet restore -r linux-x64
 
-COPY . .
+COPY ./worker/ .
 RUN dotnet publish -c release -o /app -r linux-x64 --self-contained false --no-restore
 
 # app image
