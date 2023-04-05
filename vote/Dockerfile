@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Install our requirements.txt
 COPY ./vote/requirements.txt /app/requirements.txt
-RUN pip install -r /requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy our code from the current folder to /app inside the container
 COPY . .
