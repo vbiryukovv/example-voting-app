@@ -1,0 +1,45 @@
+version: 'v2'
+services:
+  vote:
+    image: 'asm:5000/examplevotingapp_vote:v1'
+    ports: 
+      - '5000:80'
+    networks: 
+      - front-tier
+      - back-tier
+  result:
+    image: 'asm:5000/examplevotingapp_result:v1'
+    ports: 
+      - '5001:80'
+      - '5858:5858'
+    networks: 
+      - front-tier
+      - back-tier
+  worker:
+    image: 'asm:5000/examplevotingapp_worker:v1'
+    networks: 
+      - back-tier
+  redis:
+    image: 'redis:alpine'
+    networks:
+      - back-tier
+  db:
+    image: 'postgres:15-alpine'
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes: 
+      - /var/lib/postgresql/data
+    networks: 
+      - back-tier
+networks:
+  back-tier:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.10.0/24
+  front-tier:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.9.0/24
