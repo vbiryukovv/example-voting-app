@@ -1,14 +1,14 @@
 version: 'v2'
 services:
   vote:
-    image: 'asm:5000/examplevotingapp_vote:v1'
+    image: 'acm:5000/examplevotingapp_vote:v1'
     ports: 
       - '5000:80'
     networks: 
       - front-tier
       - back-tier
   result:
-    image: 'asm:5000/examplevotingapp_result:v1'
+    image: 'acm:5000/examplevotingapp_result:v1'
     ports: 
       - '5001:80'
       - '5858:5858'
@@ -16,7 +16,7 @@ services:
       - front-tier
       - back-tier
   worker:
-    image: 'asm:5000/examplevotingapp_worker:v1'
+    image: 'acm:5000/examplevotingapp_worker:v1'
     networks: 
       - back-tier
   redis:
