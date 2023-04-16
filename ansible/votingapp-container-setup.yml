@@ -34,7 +34,7 @@
 
     - name: Setup with docker-compose
       shell:
-        cmd: docker-compose up -d
+        cmd: docker compose up -d
         chdir: /tmp/votingapp
       register: contdeploy
       tags:
